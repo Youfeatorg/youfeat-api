@@ -4,7 +4,7 @@ import mongoose from "mongoose"
 import route from "./router/allRouts.js"
 import cloudinary from 'cloudinary'
 import env from 'dotenv'
-const port = 3500;
+const port = process.env.PORT || 3500;
 const app = express();
 env.config();
 
