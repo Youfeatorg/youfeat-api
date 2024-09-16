@@ -1,9 +1,11 @@
-import express from "express"
-import cors from "cors"
-import mongoose from "mongoose"
-import route from "./router/allRouts.js"
-import cloudinary from 'cloudinary'
-import env from 'dotenv'
+/** @format */
+
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import route from "./router/allRouts.js";
+import cloudinary from "cloudinary";
+import env from "dotenv";
 const port = process.env.PORT || 3500;
 const app = express();
 env.config();
@@ -22,20 +24,18 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-
-  
 cloudinary.v2.config({
-      cloud_name: 'dl9dxseum', 
-      api_key: '282535896357334', 
-      api_secret: 'R6I7fKAgdiC_dEbhXmqskdbv6lU' 
-  })
+  cloud_name: "dl9dxseum",
+  api_key: "282535896357334",
+  api_secret: "R6I7fKAgdiC_dEbhXmqskdbv6lU",
+});
 app.use(express.json());
 
 // Define an array of allowed origins
 const allowedOrigins = [
-  'https://youfeat.ng',
-  "https://youfeat.ng/*",
-  'http://localhost:3000'
+  "https://youfeat.com.ng",
+  "https://youfeat.com.ng/*",
+  "http://localhost:3000",
 ];
 
 const corsOptions = {
@@ -44,7 +44,7 @@ const corsOptions = {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error("Not allowed by CORS"));
     }
   },
   credentials: true,
@@ -53,8 +53,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.get("/", (req, res)=>{
-  res.send({youfeat: "welcome"})
-})
+app.get("/", (req, res) => {
+  res.send({ youfeat: "welcome" });
+});
 
 app.use(route);
