@@ -17,6 +17,8 @@ const handleVerifyEmail =async (req, res) =>{
        await User.findOneAndUpdate({ email: user.email }, { accesstoken, code: '000000', verified: true })
         res.json({ accesstoken });
       } catch (err) {
+        console.log(err);
+        
         if (err) return res.sendStatus(400);
       }
 }
