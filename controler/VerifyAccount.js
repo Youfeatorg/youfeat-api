@@ -10,14 +10,13 @@ const handleVerifyEmail =async (req, res) =>{
     try {
         const accesstoken = jwt.sign(
           { email: user.email },
-          process.env.ACCESS_TOKEN,
+          process.env.JWT_SECRETE,
           { expiresIn: "15m" }
         );
     
        await User.findOneAndUpdate({ email: user.email }, { accesstoken, code: '000000', verified: true })
         res.json({ accesstoken });
       } catch (err) {
-        console.log(err);
         
         if (err) return res.sendStatus(400);
       }
