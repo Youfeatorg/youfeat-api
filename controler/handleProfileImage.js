@@ -4,7 +4,6 @@ import cloudinary from 'cloudinary'
 
 const handleProfileImage = async (req, res) => {
 const { userid } = req.params;
-console.log(req.file);
 
 try{
 const result = await cloudinary.v2.uploader.upload(req.file.path, {
