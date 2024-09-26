@@ -20,9 +20,18 @@ import handleVerifyEmail from "../controler/VerifyAccount.js";
 import handleCheckEmail from "../controler/handleCheckEmail.js";
 import handleChangePassword from "../controler/handleChangePassword.js";
 import authMiddleware from "../midlewear/authMiddleware.js";
+import uploadYoufeatVideo from "../controler/handleYoufeatVideoUpload.js";
+import uploadVideo from "../controler/handleVideoUploads.js";
+import handleGetYoufeatVideo from "../controler/handleGetyoufeatVideo.js";
 const route = express.Router();
 
 route.post("/signup", handleRegister);
+
+route.post("/youfeat/videouploads", upload, uploadYoufeatVideo);
+
+route.get("/youfeat/videos", handleGetYoufeatVideo);
+
+route.post("/videouploads", upload, uploadVideo);
 
 route.post("/setpassword", handleChangePassword);
 
