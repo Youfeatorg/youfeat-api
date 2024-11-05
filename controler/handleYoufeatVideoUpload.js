@@ -9,9 +9,8 @@ try{
     folder: "/teacherManagment/",
     use_filename: true,
   });
-
   const i =await Video.create({
-        video: result.url,
+        video: result.secure_url,
         title: req.body.title,
         description: req.body.description,
   })

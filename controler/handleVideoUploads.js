@@ -6,6 +6,7 @@ import cloudinary from 'cloudinary'
 const uploadVideo = async(req, res) => {
 
   const result = await cloudinary.v2.uploader.upload(req.file.path, {
+    resource_type: 'video',
     folder: "/youfeat/",
     use_filename: true,
   });
@@ -19,8 +20,8 @@ const uploadVideo = async(req, res) => {
       description: req.body.description,
     },
   })
-res.send(user)
   fs.unlinkSync(req.file.path)
+res.send(user)
 };
 
 export default uploadVideo;
