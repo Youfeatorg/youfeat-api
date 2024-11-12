@@ -35,7 +35,7 @@ app.use(express.json());
 const allowedOrigins = [
   "https://youfeat.com.ng",
   "https://youfeat.com.ng/*",
-  "http://localhost:3000",
+  "https://www.youfeat.com.ng",
 ];
 
 const corsOptions = {
@@ -51,7 +51,7 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send({ youfeat: "welcome" });
