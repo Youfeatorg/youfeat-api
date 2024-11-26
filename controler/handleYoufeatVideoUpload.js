@@ -13,6 +13,7 @@ try{
         video: result.secure_url,
         title: req.body.title,
         description: req.body.description,
+        published: true
   })
   fs.unlinkSync(req.file.path)
   res.send(i)

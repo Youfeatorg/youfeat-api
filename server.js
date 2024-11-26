@@ -37,6 +37,7 @@ const allowedOrigins = [
   "https://youfeat.com.ng/*",
   "https://www.youfeat.com.ng/*",
   "https://www.youfeat.com.ng",
+  "http://localhost:3000",
 ];
 
 const corsOptions = {

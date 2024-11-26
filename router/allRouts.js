@@ -23,6 +23,8 @@ import authMiddleware from "../midlewear/authMiddleware.js";
 import uploadYoufeatVideo from "../controler/handleYoufeatVideoUpload.js";
 import uploadVideo from "../controler/handleVideoUploads.js";
 import handleGetYoufeatVideo from "../controler/handleGetyoufeatVideo.js";
+import handleDeleteVideo from "../controler/handleDeleteVideo.js";
+
 const route = express.Router();
 
 route.post("/signup", handleRegister);
@@ -30,6 +32,8 @@ route.post("/signup", handleRegister);
 route.post("/youfeat/videouploads", upload, uploadYoufeatVideo);
 
 route.get("/youfeat/videos", handleGetYoufeatVideo);
+
+route.get("/video/delete", authMiddleware, handleDeleteVideo);
 
 route.post("/videouploads", upload, uploadVideo);
 
