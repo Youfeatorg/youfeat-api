@@ -1,6 +1,7 @@
 import fs from "fs"
 import User from "../schema/userSchema.js"
 import cloudinary from 'cloudinary'
+import Video from "../schema/videoSchema.js"
 
 
 const uploadVideo = async(req, res) => {
