@@ -35,7 +35,7 @@ route.get("/youfeat/videos", handleGetYoufeatVideo);
 
 route.get("/video/delete", authMiddleware, handleDeleteVideo);
 
-route.post("/videouploads", upload, uploadVideo);
+route.post("/videouploads",  upload, uploadVideo);
 
 route.post("/setpassword", handleChangePassword);
 

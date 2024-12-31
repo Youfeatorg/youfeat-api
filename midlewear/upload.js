@@ -1,16 +1,17 @@
-import multer from "multer"
+/** @format */
+
+import multer from "multer";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "videos");
   },
   filename: (req, file, cb) => {
-    const uniqueName = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.fieldname + "-" + uniqueName + ".mp4");
+    const genName = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, file.fieldname + "-" + genName + file.originalname);
   },
 });
 
-// Create multer middleware for file upload
-const upload = multer({ storage }).single("video");
+const upload = multer({ storage: storage }).single("video");
 
 export default upload;

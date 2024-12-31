@@ -7,6 +7,7 @@ try{
     comment,
     userId,
     commenterId,
+    under: "root",
   });
   res.send(newComment)
 }catch (err){

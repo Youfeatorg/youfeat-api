@@ -1,30 +1,24 @@
-on: 
-  push: 
-    branch: 
-      - main
-name: 🚀 Deploy website on push
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
-    runs-on: ubuntu-latest
+  job_id:
+    # ...
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v3
+    - uses: 'actions/checkout@v4'
 
-    - name: User Node.js 16
-      uses: actions/setup-node@v2
-      with: 
-        node-version: '16'
-
-    - name: Build Project
-      run: |
-        npm install
-
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    - uses: 'google-github-actions/auth@v2'
       with:
-        server: ftp.youfeat.ng
-        username: youfeat3@server.youfeat.ng
-        password: sF%oPQ0@q{4T
-        port: 21
-        protocol: ftps
+        workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+        service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+
+    - id: 'deploy'
+      uses: 'google-github-actions/deploy-cloudrun@v2'
+      with:
+        service: 'hello-cloud-run'
+        image: 'gcr.io/cloudrun/hello'
+
+    - name: 'Use output'
+      run: 'curl "${{ steps.deploy.outputs.url }}"'
