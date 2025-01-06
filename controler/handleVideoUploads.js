@@ -28,6 +28,7 @@ const uploadVideo = async (req, res) => {
     published: false,
   });
   fs.unlinkSync(req.file.path);
+  res.send(user)
 };
 
 export default uploadVideo;
