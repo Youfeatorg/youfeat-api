@@ -6,12 +6,14 @@ import mongoose from "mongoose";
 import route from "./router/allRouts.js";
 import cloudinary from "cloudinary";
 import env from "dotenv";
+import User from "./schema/userSchema.js"
 const port = process.env.PORT || 3500;
 const app = express();
 env.config();
 
 //const db = "mongodb://127.0.0.1:27017/youfeat";
 const db = process.env.DB_URL;
+
 mongoose
   .connect(db, {
     useNewUrlParser: true,

@@ -24,6 +24,7 @@ import uploadYoufeatVideo from "../controler/handleYoufeatVideoUpload.js";
 import uploadVideo from "../controler/handleVideoUploads.js";
 import handleGetYoufeatVideo from "../controler/handleGetyoufeatVideo.js";
 import handleDeleteVideo from "../controler/handleDeleteVideo.js";
+import handleVideoStreem from "../controler/handleVideoStreem.js"
 
 const route = express.Router();
 
@@ -36,6 +37,8 @@ route.get("/youfeat/videos", handleGetYoufeatVideo);
 route.get("/video/delete", authMiddleware, handleDeleteVideo);
 
 route.post("/videouploads",  upload, uploadVideo);
+
+route.get("/video/:filename", handleVideoStreem)
 
 route.post("/setpassword", handleChangePassword);
 
