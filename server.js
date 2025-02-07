@@ -7,7 +7,7 @@ import route from "./router/allRouts.js";
 import cloudinary from "cloudinary";
 import env from "dotenv";
 import User from "./schema/userSchema.js"
-const port = process.env.PORT || 3500;
+const port = process.env.PORT || 8000;
 const app = express();
 env.config();
 
