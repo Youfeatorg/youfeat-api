@@ -25,7 +25,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp.youfeat.com.ng
-        username: api@server.youfeat.com.ng
-        password: ucNqPkKN#Nnb
+        username: server@api.youfeat.com.ng
+        password: CcHHNz;IUQ!W
         protocol: ftps
         local-dir: ./
