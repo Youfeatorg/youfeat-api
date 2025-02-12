@@ -6,6 +6,8 @@ import nodemailer from "nodemailer"
 const handleCheckEmail =async (req, res) => {
   const {email} = req.body
 
+  const foundUser =await User.findOne({email})
+
 const transporter = nodemailer.createTransport({
       port: 465, // true for 465, false for other ports
       host: "smtp.gmail.com",
@@ -21,9 +23,9 @@ const transporter = nodemailer.createTransport({
   const maildata = {
     from: process.env.Email_User,
     to: email,
-    subject: `${fullName} verify your account`,
+    subject: `${foundUser.fullName} verify your account`,
     html: `
-    <h2>Hello, ${fullName}</h2>
+    <h2>Hello, ${foundUser.fullName}</h2>
     <h2>Thank you for signing up with YouFeat</h2>
     <p>Your verification code is <b>${code}</b> </p>
     `,
