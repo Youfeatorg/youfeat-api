@@ -1,5 +1,5 @@
 import User from '../schema/userSchema.js'
-import crypto from "crypto"
+import bcrypt from 'bcrypt'
 
 const handleChangePassword = async(req, res)=>{
     const { code, password} = req.body
@@ -7,15 +7,10 @@ const handleChangePassword = async(req, res)=>{
     if(!user) return res.sendStatus(401)
 
     try{
-        const salt = crypto.randomBytes(16).toString('hex');
-        const iterations = 100000; // You can adjust this based on your security requirements
-        const keylen = 64; // Key length in bytes
-        const digest = 'sha512'; // Hashing algorithm
-
-        const hashedPassword = crypto.pbkdf2Sync(password, salt, iterations, keylen, digest).toString('hex');
-
-        User.findOneAndUpdate({code}, {password: hashedPassword, salt, code: 100000,})
-        .then(data=> res.sendStatus(200))
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
+       const user =await User.findOneAndUpdate({code}, {password: hashedPassword, code: 100000,})
+        res.sendStatus(200)
     }catch (err){
         res.sendStatus(400)
     }

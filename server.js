@@ -11,6 +11,12 @@ const port = process.env.PORT || 8000;
 const app = express();
 env.config();
 
+/*const del = async()=>{
+  const user = await User.findOneAndDelete({email: "js5618171@gmail.com"})
+  console.log(user);
+}*/
+
+
 //const db = "mongodb://127.0.0.1:27017/youfeat";
 const db = process.env.DB_URL;
 

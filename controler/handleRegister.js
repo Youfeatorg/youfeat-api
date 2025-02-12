@@ -4,27 +4,32 @@ import User from "../schema/userSchema.js";
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
 
-const del = () => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "ngbedejames415@gmail.com",
-      pass: "blaspace",
-    },
-  });
-
-  const option = {
-    from: "ngbedejames415@gmail.com",
-    to: "js5618171@gmail.com",
-    subject: "testing app",
-    text: "testing this shit",
-  };
-
-  transporter.sendMail(option, (err) => console.log(err));
-};
 const handleRegister = async (req, res) => {
-  const { fullName, email, catigory, password, state, role, contestant, code } =
+  const { fullName, email, catigory, password, state, role, contestant } =
     req.body;
+
+    const transporter = nodemailer.createTransport({
+      port: 465, // true for 465, false for other ports
+      host: "smtp.gmail.com",
+      auth: {
+        user: process.env.Email_User,
+        pass: process.env.Email_Password,
+      },
+      secure: true,
+    });
+
+  const code = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+
+  const maildata = {
+    from: process.env.Email_User,
+    to: email,
+    subject: `${fullName} verify your account`,
+    html: `
+    <h1>Hello, ${fullName}</h1>
+    <h2>Thank you for signing up with YouFeat</h2>
+    <p>Your verification code is <b>${code}</b> </p>
+    `,
+  };
 
   try {
     const duplicate = await User.findOne({ email });
@@ -32,6 +37,14 @@ const handleRegister = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+
+    transporter.sendMail(maildata, (error, info) => {
+      if (error) {
+        console.log(error);
+        console.log(info);
+        res.sendStatus(400)
+      }
+    });
 
     const newUser = await User.create({
       fullName,

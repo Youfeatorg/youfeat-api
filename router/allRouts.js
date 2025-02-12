@@ -25,6 +25,7 @@ import uploadVideo from "../controler/handleVideoUploads.js";
 import handleGetYoufeatVideo from "../controler/handleGetyoufeatVideo.js";
 import handleDeleteVideo from "../controler/handleDeleteVideo.js";
 import handleVideoStreem from "../controler/handleVideoStreem.js"
+import handleResendEmail from "../controler/handleResendMessage.js";
 
 const route = express.Router();
 
@@ -45,6 +46,8 @@ route.post("/setpassword", handleChangePassword);
 route.post("/logout", authMiddleware, handleLogout);
 
 route.post("/checkemail", handleCheckEmail);
+
+route.post("/resend/email", handleResendEmail)
 
 route.post("/verifyemail", handleVerifyEmail);
 

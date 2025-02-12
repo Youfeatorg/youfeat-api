@@ -1,10 +1,8 @@
-/** @format */
+import User from "../schema/userSchema.js";
+import nodemailer from 'nodemailer'
 
-import User from "../schema/userSchema.js"
-import nodemailer from "nodemailer"
-
-const handleCheckEmail =async (req, res) => {
-  const {email} = req.body
+const handleResendEmail =async (req, res)=>{
+    const {email} = req.body
 
 const transporter = nodemailer.createTransport({
       port: 465, // true for 465, false for other ports
@@ -39,5 +37,6 @@ const transporter = nodemailer.createTransport({
 
   const user = await User.findOneAndUpdate({ email: email }, { code: code });
   res.sendStatus(200)
-};
-export default handleCheckEmail;
+}
+
+export default handleResendEmail
