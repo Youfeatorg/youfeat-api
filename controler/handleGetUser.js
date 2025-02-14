@@ -1,4 +1,4 @@
-import User from "../schema/userSchema.js"
+const User = require("../schema/userSchema.js")
 
 /*const del =async ()=>{
   const i = await User.findOneAndUpdate({email: 'ngbedejames415@gmail.com'}, {verified: true})
@@ -17,4 +17,4 @@ const handleGetUser = async (req, res) => {
 
 };
 
-export default handleGetUser;
+module.exports = handleGetUser;

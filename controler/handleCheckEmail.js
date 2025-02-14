@@ -1,7 +1,7 @@
 /** @format */
 
-import User from "../schema/userSchema.js"
-import nodemailer from "nodemailer"
+const User = require("../schema/userSchema.js")
+const nodemailer = require("nodemailer")
 
 const handleCheckEmail =async (req, res) => {
   const {email} = req.body
@@ -42,4 +42,5 @@ const transporter = nodemailer.createTransport({
   const user = await User.findOneAndUpdate({ email: email }, { code: code });
   res.sendStatus(200)
 };
-export default handleCheckEmail;
+
+module.exports = handleCheckEmail;

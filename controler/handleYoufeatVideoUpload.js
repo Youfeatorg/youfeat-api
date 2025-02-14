@@ -1,6 +1,6 @@
-import fs from "fs"
-import Video from "../schema/videoSchema.js"
-import cloudinary from 'cloudinary'
+const fs = require("fs")
+const Video = require("../schema/videoSchema.js")
+const cloudinary = require('cloudinary')
 
 const uploadYoufeatVideo = async(req, res) => {
 try{
@@ -23,4 +23,4 @@ catch (err){
 }
 };
 
-export default uploadYoufeatVideo;
+module.exports = uploadYoufeatVideo;

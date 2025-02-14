@@ -1,4 +1,4 @@
-import Comment from "../schema/comment.js"
+const Comment = require("../schema/comment.js")
 
 const handleComment = async(req, res) => {
   const { comment, userId, commenterId } = req.body;
@@ -16,4 +16,4 @@ try{
 }
 };
 
-export default handleComment;
+module.exports = handleComment;

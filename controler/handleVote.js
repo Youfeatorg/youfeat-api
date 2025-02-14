@@ -1,4 +1,4 @@
-import Vote from "../schema/voteSchema.js";
+const Vote = require("../schema/voteSchema.js");
 
 const handleVote = async (req, res) => {
   const { userName, videoTitle, userId, videoName, voterId, votes } = req.body;
@@ -35,4 +35,4 @@ const handleVote = async (req, res) => {
 }
 del()*/
 
-export default handleVote;
+module.exports = handleVote;

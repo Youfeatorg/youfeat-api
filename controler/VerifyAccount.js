@@ -1,5 +1,5 @@
-import User from '../schema/userSchema.js'
-import jwt from 'jsonwebtoken'
+const User = require('../schema/userSchema.js')
+const jwt = require('jsonwebtoken')
 
 const handleVerifyEmail =async (req, res) =>{
     const {code} = req.body;
@@ -21,4 +21,4 @@ const handleVerifyEmail =async (req, res) =>{
       }
 }
 
-export default handleVerifyEmail
+module.exports = handleVerifyEmail

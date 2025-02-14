@@ -1,8 +1,8 @@
-import fs from "fs";
-import User from "../schema/userSchema.js";
-import cloudinary from "cloudinary";
-import ffmpeg from "fluent-ffmpeg";
-import Video from "../schema/videoSchema.js";
+const fs = require("fs");
+const User = require("../schema/userSchema.js");
+const cloudinary = require("cloudinary");
+const ffmpeg = require("fluent-ffmpeg");
+const Video = require("../schema/videoSchema.js");
 
 const uploadVideo = async (req, res) => {
 
@@ -30,4 +30,4 @@ const uploadVideo = async (req, res) => {
   res.send(user)
 };
 
-export default uploadVideo;
+module.exports = uploadVideo;

@@ -1,8 +1,8 @@
 /** @format */
 
-import User from "../schema/userSchema.js";
-import bcrypt from "bcrypt";
-import nodemailer from "nodemailer";
+const User = require("../schema/userSchema.js");
+const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
 
 const handleRegister = async (req, res) => {
   const { fullName, email, catigory, password, state, role, contestant } =
@@ -63,4 +63,4 @@ const handleRegister = async (req, res) => {
   }
 };
 
-export default handleRegister;
+module.exports = handleRegister;

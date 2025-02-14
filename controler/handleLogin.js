@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken"
-import User from "../schema/userSchema.js"
-import bcrypt from 'bcrypt'
+const jwt = require("jsonwebtoken");
+const User = require("../schema/userSchema.js");
+const bcrypt = require("bcrypt");
 
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -9,11 +9,11 @@ const handleLogin = async (req, res) => {
   const foundUser = await User.findOne({ email });
   if (!foundUser) return res.sendStatus(401);
 
-  const isPassword = bcrypt.compare(password, foundUser.password)
-       if(!isPassword){
-        return res.status(401).send({msg: 'ivalid password/school name'})
-       }
-  
+  const isPassword = bcrypt.compare(password, foundUser.password);
+  if (!isPassword) {
+    return res.status(401).send({ msg: "ivalid password/school name" });
+  }
+
   try {
     const accesstoken = jwt.sign(
       { email: foundUser.email },
@@ -21,11 +21,14 @@ const handleLogin = async (req, res) => {
       { expiresIn: "15d" }
     );
 
-   const i =await User.findOneAndUpdate({ email: foundUser.email }, { accesstoken })
+    const i = await User.findOneAndUpdate(
+      { email: foundUser.email },
+      { accesstoken }
+    );
     res.json({ accesstoken });
   } catch (err) {
     if (err) return res.sendStatus(400);
   }
 };
 
-export default handleLogin;
+module.exports = handleLogin;

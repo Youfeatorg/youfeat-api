@@ -1,4 +1,4 @@
-import User from "../schema/userSchema.js"
+const User = require("../schema/userSchema.js")
 
 const handleLogout = (req, res) => {
    const user = req.user
@@ -6,4 +6,4 @@ const handleLogout = (req, res) => {
    res.sendStatus(200)
 };
 
-export default handleLogout;
+module.exports = handleLogout;

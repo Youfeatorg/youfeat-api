@@ -1,6 +1,6 @@
-import fs from "fs"
-import User from "../schema/userSchema.js"
-import cloudinary from 'cloudinary'
+const fs = require("fs")
+const User = require("../schema/userSchema.js")
+const cloudinary = require('cloudinary')
 
 const handleProfileImage = async (req, res) => {
 const { userid } = req.params;
@@ -19,4 +19,4 @@ const result = await cloudinary.v2.uploader.upload(req.file.path, {
 }
 };
 
-export default handleProfileImage;
+module.exports = handleProfileImage;

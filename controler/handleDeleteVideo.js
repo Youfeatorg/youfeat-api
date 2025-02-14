@@ -1,5 +1,5 @@
-import User from "../schema/userSchema.js";
-import Video from "../schema/videoSchema.js";
+const User = require("../schema/userSchema.js");
+const Video = require("../schema/videoSchema.js");
 
 const handleDeleteVideo = async (req, res) => {
   const { user } = req;
@@ -17,4 +17,4 @@ const handleDeleteVideo = async (req, res) => {
   }
 };
 
-export default handleDeleteVideo;
+module.exports = handleDeleteVideo;

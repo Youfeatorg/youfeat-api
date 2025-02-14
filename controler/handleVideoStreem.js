@@ -1,5 +1,5 @@
-import fs from "fs"
-import ytdl from 'ytdl-core'
+const fs = require("fs")
+const ytdl = require('ytdl-core')
 
 const handleVideoStreem = async (req, res) => {
   try {
@@ -15,4 +15,4 @@ const handleVideoStreem = async (req, res) => {
   }
 };
 
-export default handleVideoStreem;
+module.exports = handleVideoStreem;
