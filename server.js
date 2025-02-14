@@ -12,8 +12,8 @@ const app = express();
 env.config();
 /*
 const del = async()=>{
-  const user = await User.findOneAndDelete({email: "js5618171@gmail.com"})
-  console.log(user);
+  const user = await User.find()
+  res.send(user);
 }
 */
 
@@ -63,8 +63,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.get("/", (req, res) => {
-  res.send({ youfeat: "welcome" });
+app.get("/", async(req, res) => {
+  const user = await User.find()
+  res.send(user);
 });
 
 app.use(route);
