@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const route = require("./router/allRouts.js");
 const cloudinary = require("cloudinary");
 const env = require("dotenv");
-const User = require("./schema/userSchema.js")
+const User = require("./schema/userSchema.js");
 const port = process.env.PORT || 8000;
 const app = express();
 env.config();
@@ -63,9 +63,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.get("/", async(req, res) => {
-  const user = await User.find()
-  res.send(user);
+app.get("/", async (req, res) => {
+  res.send({url:process.env.JWT_SECRETE});
 });
 
 app.use(route);
