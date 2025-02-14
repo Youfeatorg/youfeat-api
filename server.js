@@ -20,6 +20,10 @@ const del = async()=>{
 //const db = "mongodb://127.0.0.1:27017/youfeat";
 const db = process.env.DB_URL;
 
+app.get("/", async (req, res) => {
+  res.send({url:process.env.JWT_SECRETE});
+});
+
 mongoose
   .connect(db, {
     useNewUrlParser: true,
@@ -63,8 +67,5 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.get("/", async (req, res) => {
-  res.send({url:process.env.JWT_SECRETE});
-});
 
 app.use(route);
