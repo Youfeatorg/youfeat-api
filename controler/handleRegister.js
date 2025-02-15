@@ -16,6 +16,7 @@ const handleRegister = async (req, res) => {
         pass: process.env.Email_Password,
       },
       secure: true,
+      from: "process.env.Email_User"
     });
 
   const code = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;

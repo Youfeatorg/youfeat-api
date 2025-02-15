@@ -3,6 +3,7 @@ import User from "../schema/userSchema.js"
 import cloudinary from "cloudinary"
 import ffmpeg from "fluent-ffmpeg"
 import Video from "../schema/videoSchema.js"
+import bucket from "../Credentials/GoogleBucket.js"
 
 const uploadVideo = async (req, res) => {
 
@@ -12,6 +13,14 @@ const uploadVideo = async (req, res) => {
     use_filename: true,
   });*/
 
+  /*const blob = bucket.file(req.file.path)
+  const blobStream = blob.createWriteStream()
+  blobStream.on("finish", (e)=>{
+    console.log(e);
+  })
+
+  blobStream.end(req.file.buffer)
+*/
   const user = await User.findByIdAndUpdate(req.body.userId, {
     video: {
       filename: req.file.filename,
