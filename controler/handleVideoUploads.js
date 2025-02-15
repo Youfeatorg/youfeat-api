@@ -21,27 +21,28 @@ const uploadVideo = async (req, res) => {
     res.sendStatus(500);
   });
 
+  let url;
   blobStream.on("finish", async (e) => {
-    const user = await User.findByIdAndUpdate(req.body.userId, {
-      video: {
-        filename: req.file.filename,
-        filepath: `https://storage.googleapis.com/youfea-tvideo_bucketcom/${blob.name}`,
-        contentType: req.file.mimetype,
-        title: req.body.title,
-        catigory: req.body.catigory,
-        description: req.body.description,
-      },
-    });
-    const i = await Video.create({
-      video:  `https://storage.googleapis.com/youfea-tvideo_bucketcom/${blob.name}`,
-      title: req.body.title,
-      description: req.body.description,
-      published: false,
-    });
+    res.send({url: `https://storage.googleapis.com/youfea-tvideo_bucketcom/${blob.name}`})
   });
   blobStream.end(req.file.buffer);
-
-  res.sendStatus(200);
+  /*const user = await User.findByIdAndUpdate(req.body.userId, {
+    video: {
+      filename: req.file.filename,
+      filepath: `https://storage.googleapis.com/youfea-tvideo_bucketcom/${blob.name}`,
+      contentType: req.file.mimetype,
+      title: req.body.title,
+      catigory: req.body.catigory,
+      description: req.body.description,
+    },
+  });
+  const i = await Video.create({
+    video:  `https://storage.googleapis.com/youfea-tvideo_bucketcom/${blob.name}`,
+    title: req.body.title,
+    description: req.body.description,
+    published: false,
+  });
+  res.sendStatus(200);*/
 };
 
 export default uploadVideo;
