@@ -1,6 +1,6 @@
 /** @format */
 
-const multer = require("multer");
+import multer from "multer"
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -14,4 +14,4 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single("video");
 
-module.exports = upload;
+export default upload;

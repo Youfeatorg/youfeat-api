@@ -1,4 +1,4 @@
-const Notification = require("../schema/notificationSchema.js")
+import Notification from "../schema/notificationSchema.js"
 
 const handleNotification = async(req, res) => {
   const { from, to, message, date } = req.body;
@@ -16,4 +16,4 @@ try{
 }
 };
 
-module.exports = handleNotification;
+export default handleNotification;

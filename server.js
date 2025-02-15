@@ -1,27 +1,21 @@
 /** @format */
 
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const route = require("./router/allRouts.js");
-const cloudinary = require("cloudinary");
-const env = require("dotenv");
-const User = require("./schema/userSchema.js");
+import express  from "express";
+import cors  from "cors";
+import mongoose  from "mongoose";
+import route  from "./router/allRouts.js";
+import cloudinary  from "cloudinary";
+import env  from "dotenv";
+import User  from "./schema/userSchema.js";
 const port = process.env.PORT || 8000;
 const app = express();
 env.config();
-/*
-const del = async()=>{
-  const user = await User.find()
-  res.send(user);
-}
-*/
 
 //const db = "mongodb://127.0.0.1:27017/youfeat";
 const db = process.env.DB_URL;
 
 app.get("/", async (req, res) => {
-  res.send({url:process.env.JWT_SECRETE});
+  res.send({ url: process.env.JWT_SECRETE });
 });
 
 mongoose
@@ -66,6 +60,5 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
 
 app.use(route);

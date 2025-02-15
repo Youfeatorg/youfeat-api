@@ -1,6 +1,6 @@
 /** @format */
 
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const commentSchema = new mongoose.Schema({
   comment: String,
@@ -11,4 +11,4 @@ const commentSchema = new mongoose.Schema({
 
 const Comment = mongoose.model("Comment", commentSchema);
 
-module.exports = Comment;
+export default Comment;

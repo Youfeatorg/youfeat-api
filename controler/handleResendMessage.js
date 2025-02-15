@@ -1,5 +1,5 @@
-const User = require("../schema/userSchema.js")
-const nodemailer = require('nodemailer')
+import User from "../schema/userSchema.js"
+import nodemailer from 'nodemailer'
 
 const handleResendEmail =async (req, res)=>{
     const {email} = req.body
@@ -39,4 +39,4 @@ const transporter = nodemailer.createTransport({
   res.sendStatus(200)
 }
 
-module.exports = handleResendEmail
+export default handleResendEmail

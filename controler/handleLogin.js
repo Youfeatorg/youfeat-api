@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
-const User = require("../schema/userSchema.js");
-const bcrypt = require("bcrypt");
+import jwt from "jsonwebtoken"
+import User from "../schema/userSchema.js"
+import bcrypt from "bcrypt"
 
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -31,4 +31,4 @@ const handleLogin = async (req, res) => {
   }
 };
 
-module.exports = handleLogin;
+export default handleLogin;

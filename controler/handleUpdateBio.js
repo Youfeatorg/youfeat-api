@@ -1,4 +1,4 @@
-const User = require("../schema/userSchema.js")
+import User from "../schema/userSchema.js"
 
 const handleBioUpdate = async(req, res) => {
   const { bio, state, dob, highschool } = req.body;
@@ -11,4 +11,4 @@ try{
     }
 };
 
-module.exports = handleBioUpdate;
+export default handleBioUpdate;

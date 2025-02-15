@@ -1,5 +1,5 @@
-const User =  require('../schema/userSchema.js')
-const bcrypt =  require('bcrypt')
+import User from '../schema/userSchema.js'
+import bcrypt from 'bcrypt'
 
 const handleChangePassword = async(req, res)=>{
     const { code, password} = req.body
@@ -16,4 +16,4 @@ const handleChangePassword = async(req, res)=>{
     }
 }
 
-module.exports = handleChangePassword
+export default handleChangePassword

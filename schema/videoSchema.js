@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const videoschema =new mongoose.Schema({
     video: String,
@@ -9,4 +9,4 @@ const videoschema =new mongoose.Schema({
 
 const Video = mongoose.model('video', videoschema)
 
-module.exports = Video;
+export default Video;

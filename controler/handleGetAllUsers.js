@@ -1,4 +1,4 @@
-const User = require("../schema/userSchema.js")
+import User  from "../schema/userSchema.js"
 
 const handleGetAllUsers = async (req, res) => {
   try{
@@ -10,4 +10,4 @@ const handleGetAllUsers = async (req, res) => {
   }
 };
 
-module.exports = handleGetAllUsers;
+export default handleGetAllUsers;

@@ -1,4 +1,4 @@
-const Video = require("../schema/videoSchema.js");
+import Video from "../schema/videoSchema.js"
 
 const handleGetYoufeatVideo =async (req, res)=>{
     try{
@@ -10,4 +10,4 @@ const handleGetYoufeatVideo =async (req, res)=>{
     }
 }
 
-module.exports = handleGetYoufeatVideo
+export default handleGetYoufeatVideo

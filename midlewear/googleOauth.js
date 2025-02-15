@@ -1,6 +1,6 @@
-const { google } = ('googleapis')
-const fs = ('fs')
-const readline = ('readline')
+import { google }  from 'googleapis'
+import fs from 'fs'
+import readline from 'readline'
 
 const SCOPES = ['https://www.googleapis.com/auth/youtube.upload'];
 const TOKEN_PATH = 'token.json';
@@ -56,4 +56,4 @@ async function getAccessToken(oAuth2Client) {
   });
 }
 
-module.exports = authorize;
+export default authorize;

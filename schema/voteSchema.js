@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose"
 
 const voteSchema = new mongoose.Schema({
   userName:  String,
@@ -10,4 +10,4 @@ const voteSchema = new mongoose.Schema({
 
 const Vote = mongoose.model("Vote", voteSchema);
 
-module.exports = Vote;
+export default Vote;

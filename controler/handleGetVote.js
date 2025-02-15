@@ -1,4 +1,4 @@
-const Vote = require("../schema/voteSchema.js")
+import Vote from "../schema/voteSchema.js";
 
 const handleGetVote =async (req, res) => {
   try{
@@ -10,4 +10,4 @@ const handleGetVote =async (req, res) => {
   }
 };
 
-module.exports = handleGetVote;
+export default handleGetVote;

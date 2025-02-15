@@ -1,31 +1,31 @@
 /** @format */
 
-const express = require("express");
-const handleRegister = require("../controler/handleRegister.js");
-const handleLogin = require("../controler/handleLogin.js");
-const upload = require("../midlewear/upload.js");
-const handleLogout = require("../controler/handleLogout.js");
-const handleGetUser = require("../controler/handleGetUser.js");
-const handleProfileImage = require("../controler/handleProfileImage.js");
-const uploadImage = require("../midlewear/uploadImage.js");
-const handleGetAllUsers = require("../controler/handleGetAllUsers.js");
-const handleBioUpdate = require("../controler/handleUpdateBio.js");
-const handleVote = require("../controler/handleVote.js");
-const handleGetVote = require("../controler/handleGetVote.js");
-const handleNotification = require("../controler/handleNotification.js");
-const handleGetNotification = require("../controler/handleGetNotification.js");
-const handleComment = require("../controler/handleComment.js");
-const handleGetComment = require("../controler/handleGetComment.js");
-const handleVerifyEmail = require("../controler/VerifyAccount.js");
-const handleCheckEmail = require("../controler/handleCheckEmail.js");
-const handleChangePassword = require("../controler/handleChangePassword.js");
-const authMiddleware = require("../midlewear/authMiddleware.js");
-const uploadYoufeatVideo = require("../controler/handleYoufeatVideoUpload.js");
-const uploadVideo = require("../controler/handleVideoUploads.js");
-const handleGetYoufeatVideo = require("../controler/handleGetyoufeatVideo.js");
-const handleDeleteVideo = require("../controler/handleDeleteVideo.js");
-const handleVideoStreem = require("../controler/handleVideoStreem.js")
-const handleResendEmail = require("../controler/handleResendMessage.js");
+import express from "express"
+import handleRegister from "../controler/handleRegister.js"
+import handleLogin from "../controler/handleLogin.js"
+import upload from "../midlewear/upload.js"
+import handleLogout from "../controler/handleLogout.js"
+import handleGetUser from "../controler/handleGetUser.js"
+import handleProfileImage from "../controler/handleProfileImage.js"
+import uploadImage from "../midlewear/uploadImage.js"
+import handleGetAllUsers from "../controler/handleGetAllUsers.js"
+import handleBioUpdate from "../controler/handleUpdateBio.js"
+import handleVote from "../controler/handleVote.js"
+import handleGetVote from "../controler/handleGetVote.js"
+import handleNotification from "../controler/handleNotification.js"
+import handleGetNotification from "../controler/handleGetNotification.js"
+import handleComment from "../controler/handleComment.js"
+import handleGetComment from "../controler/handleGetComment.js"
+import handleVerifyEmail from "../controler/VerifyAccount.js"
+import handleCheckEmail from "../controler/handleCheckEmail.js"
+import handleChangePassword from "../controler/handleChangePassword.js"
+import authMiddleware from "../midlewear/authMiddleware.js"
+import uploadYoufeatVideo from "../controler/handleYoufeatVideoUpload.js"
+import uploadVideo from "../controler/handleVideoUploads.js"
+import handleGetYoufeatVideo from "../controler/handleGetyoufeatVideo.js"
+import handleDeleteVideo from "../controler/handleDeleteVideo.js"
+import handleVideoStreem from "../controler/handleVideoStreem.js"
+import handleResendEmail from "../controler/handleResendMessage.js"
 
 const route = express.Router();
 
@@ -73,4 +73,4 @@ route.post("/bio/:id", handleBioUpdate);
 
 route.post("/login", handleLogin);
 
-module.exports = route;
+export default route;
