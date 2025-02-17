@@ -26,6 +26,7 @@ import handleGetYoufeatVideo from "../controler/handleGetyoufeatVideo.js"
 import handleDeleteVideo from "../controler/handleDeleteVideo.js"
 import handleVideoStreem from "../controler/handleVideoStreem.js"
 import handleResendEmail from "../controler/handleResendMessage.js"
+import GetThumbnail from "../controler/GetThumbnail.js"
 
 const route = express.Router();
 
@@ -38,6 +39,8 @@ route.get("/youfeat/videos", handleGetYoufeatVideo);
 route.get("/video/delete", authMiddleware, handleDeleteVideo);
 
 route.post("/videouploads",  upload, uploadVideo);
+
+route.post("/thumbnail/:id", GetThumbnail)
 
 route.get("/video/:filename", handleVideoStreem)
 
