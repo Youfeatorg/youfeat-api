@@ -27,7 +27,7 @@ const uploadVideo = async (req, res) => {
               },
             });
             const i = await Video.create({
-              video: videoUrl,
+              video: body.player_embed_url,
               title: req.body.title,
               description: req.body.description,
               published: false,
