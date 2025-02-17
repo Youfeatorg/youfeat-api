@@ -17,7 +17,7 @@ const uploadVideo = async (req, res) => {
             const user = await User.findByIdAndUpdate(req.body.userId, {
               video: {
                 filename: req.file.filename,
-                filepath: videoUrl,
+                filepath: body.player_embed_url,
                 path: url,
                 thumbnail: body.pictures.sizes[body.pictures.sizes.lenght - 1].link_with_play_button,
                 contentType: req.file.mimetype,
