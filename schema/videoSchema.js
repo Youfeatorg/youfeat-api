@@ -4,7 +4,8 @@ const videoschema =new mongoose.Schema({
     video: String,
     title: String,
     description: String,
-    published: Boolean
+    published: Boolean,
+    thumbnail: String,
 })
 
 const Video = mongoose.model('video', videoschema)

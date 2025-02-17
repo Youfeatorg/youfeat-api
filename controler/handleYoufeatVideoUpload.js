@@ -19,6 +19,7 @@ try{
       const videoUrl = body.files.find((file)=> file.quality === 'hd').link
       const i =await Video.create({
         video: videoUrl,
+        thumbnail: body.pictures.base_link,
         title: req.body.title,
         description: req.body.description,
         published: true
