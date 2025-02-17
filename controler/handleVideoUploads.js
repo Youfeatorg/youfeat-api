@@ -21,12 +21,13 @@ const uploadVideo = async (req, res) => {
             path: url,
           },
           async (error, body) => {
-            const videoUrl = body.player_embed_url
+            if(!error){
+            const videoUrl = body.player_embed_url;
             const user = await User.findByIdAndUpdate(req.body.userId, {
               video: {
                 filename: req.file.filename,
                 filepath: videoUrl,
-                thumbnail: body.pictures.base_link,
+                thumbnail: body.pictures.sizes[6].link_with_play_button,
                 contentType: req.file.mimetype,
                 title: req.body.title,
                 catigory: req.body.catigory,
@@ -40,6 +41,7 @@ const uploadVideo = async (req, res) => {
               published: false,
             });
             res.send(user);
+          }
           }
         );
       }

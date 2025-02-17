@@ -11,13 +11,11 @@ const port = process.env.PORT || 8000;
 const app = express();
 env.config();
 
-
-
 //const db = "mongodb://127.0.0.1:27017/youfeat";
 const db = process.env.DB_URL;
 
 app.get("/", async (req, res) => {
-  res.send({ url: process.env.JWT_SECRETE });
+  res.send({ url: "Welcome to youfeat" });
 });
 
 mongoose
