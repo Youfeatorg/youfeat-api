@@ -1,6 +1,7 @@
 import fs from "fs"
 import Video from "../schema/videoSchema.js"
 import cloudinary from 'cloudinary'
+import vimeo from "../Credentials/Vimeo.js";
 
 const uploadYoufeatVideo = async(req, res) => {
 try{
@@ -9,14 +10,18 @@ try{
     folder: "/teacherManagment/",
     use_filename: true,
   });*/
+
+  vimeo.upload(req.file.path, async(url)=>{
   const i =await Video.create({
-        video: req.file.filename,
+        video: url,
         title: req.body.title,
         description: req.body.description,
         published: true
   })
   res.send(i)
+})
 }
+
 catch (err){
   console.log(err);
   res.sendStatus(500)

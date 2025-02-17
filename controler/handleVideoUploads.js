@@ -1,9 +1,8 @@
 import fs from "fs";
 import User from "../schema/userSchema.js";
 import cloudinary from "cloudinary";
-import ffmpeg from "fluent-ffmpeg";
 import Video from "../schema/videoSchema.js";
-import bucket from "../Credentials/GoogleBucket.js";
+import vimeo from "../Credentials/Vimeo.js";
 
 const uploadVideo = async (req, res) => {
   /*const result = await cloudinary.v2.uploader.upload(req.file.path, {
@@ -11,38 +10,30 @@ const uploadVideo = async (req, res) => {
     folder: "/youfeat/",
     use_filename: true,
   });*/
-
-  const blob = bucket.file(
-    req.file.originalname + Date.now() + "-" + Math.round(Math.random() * 1e9)
-  );
-  const blobStream = blob.createWriteStream();
-  blobStream.on("error", (e) => {
-    console.log(e);
-    res.sendStatus(500);
-  });
-
-  let url;
-  blobStream.on("finish", async (e) => {
-    res.send({url: `https://storage.googleapis.com/youfea-tvideo_bucketcom/${blob.name}`})
-  });
-  blobStream.end(req.file.buffer);
-  /*const user = await User.findByIdAndUpdate(req.body.userId, {
-    video: {
-      filename: req.file.filename,
-      filepath: `https://storage.googleapis.com/youfea-tvideo_bucketcom/${blob.name}`,
-      contentType: req.file.mimetype,
+try {
+  vimeo.upload(req.file.path, async(url)=>{
+    const user = await User.findByIdAndUpdate(req.body.userId, {
+      video: {
+        filename: req.file.filename,
+        filepath: url,
+        contentType: req.file.mimetype,
+        title: req.body.title,
+        catigory: req.body.catigory,
+        description: req.body.description,
+      },
+    });
+    const i = await Video.create({
+      video:  url,
       title: req.body.title,
-      catigory: req.body.catigory,
       description: req.body.description,
-    },
-  });
-  const i = await Video.create({
-    video:  `https://storage.googleapis.com/youfea-tvideo_bucketcom/${blob.name}`,
-    title: req.body.title,
-    description: req.body.description,
-    published: false,
-  });
-  res.sendStatus(200);*/
+      published: false,
+    });
+    res.send(user);
+  })
+} catch (error) {
+  console.log(error);
+  res.sendStatus(500)
+}
 };
 
 export default uploadVideo;
