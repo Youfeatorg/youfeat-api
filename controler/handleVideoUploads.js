@@ -21,6 +21,7 @@ const uploadVideo = async (req, res) => {
             path: url,
           },
           async (error, body) => {
+            console.log(body)
             const videoUrl = body.files.find((file)=> file.quality === 'hd').link
             const user = await User.findByIdAndUpdate(req.body.userId, {
               video: {
