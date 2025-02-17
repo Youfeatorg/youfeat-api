@@ -34,15 +34,6 @@ const uploadVideo = async (req, res) => {
             });
             return res.send({
               user,
-              video: {
-                filename: req.file.filename,
-                filepath: body.player_embed_url,
-                thumbnail: body.pictures.sizes[body.pictures.sizes.length - 1].link_with_play_button,
-                contentType: req.file.mimetype,
-                title: req.body.title,
-                catigory: req.body.catigory,
-                description: req.body.description,
-              },
               path: url
             });
           } else {
