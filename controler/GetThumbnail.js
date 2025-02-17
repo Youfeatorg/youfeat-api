@@ -9,7 +9,7 @@ const GetThumbnail =async (req, res)=> {
     vimeo.request({ method: "GET", path }, async (err, body) => {
         const user = await User.findByIdAndUpdate(id, {
             video: {
-                ...uservideo.video, thumbnail: body.pictures.sizes[body.pictures.sizes.lenght - 1].link_with_play_button
+                ...uservideo.video, thumbnail: body.pictures.sizes[body.pictures.sizes.length - 1].link_with_play_button
             }
         })
         res.sendStatus(200)
