@@ -12,13 +12,19 @@ try{
   });*/
 
   vimeo.upload(req.file.path, async(url)=>{
-  const i =await Video.create({
-        video: url,
+    vimeo.request({
+      method: "GET",
+      path: url
+    }, async(err, body)=>{
+      const videoUrl = body.files.find((file)=> file.quality === 'hd').link
+      const i =await Video.create({
+        video: videoUrl,
         title: req.body.title,
         description: req.body.description,
         published: true
   })
   res.send(i)
+    })
 })
 }
 

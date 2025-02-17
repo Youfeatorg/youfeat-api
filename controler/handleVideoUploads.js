@@ -10,30 +10,43 @@ const uploadVideo = async (req, res) => {
     folder: "/youfeat/",
     use_filename: true,
   });*/
-try {
-  vimeo.upload(req.file.path, async(url)=>{
-    const user = await User.findByIdAndUpdate(req.body.userId, {
-      video: {
-        filename: req.file.filename,
-        filepath: url,
-        contentType: req.file.mimetype,
-        title: req.body.title,
-        catigory: req.body.catigory,
-        description: req.body.description,
-      },
-    });
-    const i = await Video.create({
-      video:  url,
-      title: req.body.title,
-      description: req.body.description,
-      published: false,
-    });
-    res.send(user);
-  })
-} catch (error) {
-  console.log(error);
-  res.sendStatus(500)
-}
+  try {
+    vimeo.upload(
+      req.file.path,
+      { name: req.body.title, description: req.body.description },
+      (url) => {
+        vimeo.request(
+          {
+            method: "GET",
+            path: url,
+          },
+          async (error, body) => {
+            const videoUrl = body.files.find((file)=> file.quality === 'hd').link
+            const user = await User.findByIdAndUpdate(req.body.userId, {
+              video: {
+                filename: req.file.filename,
+                filepath: videoUrl,
+                contentType: req.file.mimetype,
+                title: req.body.title,
+                catigory: req.body.catigory,
+                description: req.body.description,
+              },
+            });
+            const i = await Video.create({
+              video: videoUrl,
+              title: req.body.title,
+              description: req.body.description,
+              published: false,
+            });
+            res.send(user);
+          }
+        );
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
 };
 
 export default uploadVideo;
