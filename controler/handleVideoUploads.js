@@ -33,7 +33,7 @@ const uploadVideo = async (req, res) => {
               published: false,
             });
             return res.send({
-              ...user,
+              user,
               video: {
                 filename: req.file.filename,
                 filepath: body.player_embed_url,
