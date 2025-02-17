@@ -4,16 +4,6 @@ import cloudinary from "cloudinary";
 import Video from "../schema/videoSchema.js";
 import vimeo from "../Credentials/Vimeo.js";
 
-const del =()=>{
-vimeo.request({
-  method: "Get",
-  path: "/videos/1057423892"
-}, (err, body)=>{
-  console.log(body);
-})
-}
-del()
-
 const uploadVideo = async (req, res) => {
   /*const result = await cloudinary.v2.uploader.upload(req.file.path, {
     resource_type: "video",
@@ -36,6 +26,7 @@ const uploadVideo = async (req, res) => {
               video: {
                 filename: req.file.filename,
                 filepath: videoUrl,
+                thumbnail: body.pictures.base_link,
                 contentType: req.file.mimetype,
                 title: req.body.title,
                 catigory: req.body.catigory,
