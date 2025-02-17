@@ -16,10 +16,10 @@ try{
       method: "GET",
       path: url
     }, async(err, body)=>{
-      const videoUrl = body.files.find((file)=> file.quality === 'hd').link
+      const videoUrl = body.player_embed_url
       const i =await Video.create({
         video: videoUrl,
-        thumbnail: body.pictures.base_link,
+        thumbnail: body.pictures.sizes[6].link_with_play_button,
         title: req.body.title,
         description: req.body.description,
         published: true
