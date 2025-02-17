@@ -37,7 +37,7 @@ const uploadVideo = async (req, res) => {
               video: {
                 filename: req.file.filename,
                 filepath: videoUrl,
-                thumbnail: body.pictures.sizes[body.pictures.sizes.lenght - 1].link_with_play_button,
+                thumbnail: body.pictures.sizes[body.pictures.sizes.length - 1].link_with_play_button,
                 contentType: req.file.mimetype,
                 title: req.body.title,
                 catigory: req.body.catigory,
