@@ -21,27 +21,50 @@ const uploadVideo = async (req, res) => {
             path: url,
           },
           async (error, body) => {
-            if(!error){
-            const videoUrl = body.player_embed_url;
-            const user = await User.findByIdAndUpdate(req.body.userId, {
-              video: {
-                filename: req.file.filename,
-                filepath: videoUrl,
-                thumbnail: body.pictures.sizes[6].link_with_play_button,
-                contentType: req.file.mimetype,
+            if (!error) {
+              const videoUrl = body.player_embed_url;
+              const user = await User.findByIdAndUpdate(req.body.userId, {
+                video: {
+                  filename: req.file.filename,
+                  filepath: videoUrl,
+                  thumbnail: body.pictures.sizes[6].link_with_play_button,
+                  contentType: req.file.mimetype,
+                  title: req.body.title,
+                  catigory: req.body.catigory,
+                  description: req.body.description,
+                },
+              });
+              const i = await Video.create({
+                video: videoUrl,
                 title: req.body.title,
-                catigory: req.body.catigory,
                 description: req.body.description,
-              },
-            });
-            const i = await Video.create({
-              video: videoUrl,
-              title: req.body.title,
-              description: req.body.description,
-              published: false,
-            });
-            res.send(user);
-          }
+                published: false,
+              });
+
+              setTimeout(() => {
+                vimeo.request(
+                  {
+                    method: "GET",
+                    path: url,
+                  },
+                  async (error, bd) => {
+                    if (!error) {
+                      const user = await User.findByIdAndUpdate(
+                        req.body.userId,
+                        {
+                          video: {
+                            ...user.video,
+                            thumbnail:
+                              bd.pictures.sizes[6].link_with_play_button,
+                          },
+                        }
+                      );
+                    }
+                  }
+                );
+              }, 10000);
+              res.send(user);
+            }
           }
         );
       }
