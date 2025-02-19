@@ -8,6 +8,5 @@ const ACCESS_TOKEN = "ce08da22c18ddceeae427885826784bd";
 
 // Initialize the Vimeo client
 const vimeo = new Vimeo.Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
-vimeo.setDebug(true);
 
 export default vimeo
