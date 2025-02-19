@@ -1,4 +1,4 @@
-import Vimeo from "@vimeo/vimeo"
+import Vimeo from "vimeo"
 
 // Replace these with your Vimeo API credentials
 const CLIENT_ID = "e9630114f474e51c1045f84b9b978b67514bcf35";
