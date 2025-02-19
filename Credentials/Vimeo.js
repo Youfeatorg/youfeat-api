@@ -1,4 +1,4 @@
-import Vimeo from "vimeo"
+import Vimeo from "@vimeo/vimeo"
 
 // Replace these with your Vimeo API credentials
 const CLIENT_ID = "e9630114f474e51c1045f84b9b978b67514bcf35";
@@ -8,5 +8,6 @@ const ACCESS_TOKEN = "ce08da22c18ddceeae427885826784bd";
 
 // Initialize the Vimeo client
 const vimeo = new Vimeo.Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
+vimeo.setDebug(true);
 
 export default vimeo
