@@ -1,12 +1,12 @@
-/** @format */
 
-import express  from "express";
-import cors  from "cors";
-import mongoose  from "mongoose";
-import route  from "./router/allRouts.js";
-import cloudinary  from "cloudinary";
-import env  from "dotenv";
-import User  from "./schema/userSchema.js";
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import route from "./router/allRouts.js";
+import cloudinary from "cloudinary";
+import env from "dotenv";
+import User from "./schema/userSchema.js";
+import Video from "./schema/videoSchema.js";
 const port = process.env.PORT || 8000;
 const app = express();
 env.config();
@@ -62,3 +62,25 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(route);
+/*
+const del = async () => {
+  const users = await Video.find();
+
+console.log(users)
+/*
+  users.forEach(async (value) => {
+    const payload = {
+      ...value.video,
+      userId: value._id,
+      category: value.catigory,
+    };
+    if (value.video) {
+      const video = await Video.create(payload);
+      console.log(video);
+    }
+  });
+*/
+};
+del();
+
+*/

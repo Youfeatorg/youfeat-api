@@ -15,28 +15,18 @@ const uploadVideo = async (req, res) => {
       async (url) => {
         vimeo.request({ method: "GET", path: url }, async (err, body) => {
           if (!err) {
-            const user = await User.findByIdAndUpdate(req.body.userId, {
-              video: {
-                filename: req.file.filename,
+            const i = await Video.create({
+              userId: req.user._id,
+              filename: req.file.filename,
                 filepath: body.player_embed_url,
                 path: url,
                 thumbnail: body.pictures.sizes[body.pictures.sizes.length - 1].link_with_play_button,
                 contentType: req.file.mimetype,
                 title: req.body.title,
-                catigory: req.body.catigory,
+                category: req.user.catigory,
                 description: req.body.description,
-              },
             });
-            const i = await Video.create({
-              video: body.player_embed_url,
-              title: req.body.title,
-              description: req.body.description,
-              published: false,
-            });
-            return res.send({
-              user,
-              path: url
-            });
+            return res.send(i);
           } else {
             res.sendStatus(400);
           }

@@ -1,11 +1,15 @@
 import mongoose from 'mongoose'
 
 const videoschema =new mongoose.Schema({
-    video: String,
+    filename: String,
+    filepath: String,
+    path: String,
+    thumbnail: String,
+    contentType: String,
     title: String,
     description: String,
-    published: Boolean,
-    thumbnail: String,
+    category: String,
+    userId: String
 })
 
 const Video = mongoose.model('video', videoschema)
