@@ -32,7 +32,7 @@ const route = express.Router();
 
 route.post("/signup", handleRegister);
 
-route.post("/youfeat/videouploads", upload, uploadYoufeatVideo);
+route.post("/youfeat/videouploads", authMiddleware, upload, uploadYoufeatVideo);
 
 route.get("/youfeat/videos", handleGetYoufeatVideo);
 
