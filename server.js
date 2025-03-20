@@ -79,7 +79,7 @@ console.log(users)
       console.log(video);
     }
   });
-*/
+
 };
 del();
 
