@@ -7,6 +7,7 @@ const commentSchema = new mongoose.Schema({
   userId: String,
   commenterId: String,
   under: String,
+  videoId: String,
 });
 
 const Comment = mongoose.model("Comment", commentSchema);
