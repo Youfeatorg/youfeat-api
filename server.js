@@ -62,25 +62,3 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(route);
-/*
-const del = async () => {
-  const users = await Video.find();
-
-console.log(users)
-/*
-  users.forEach(async (value) => {
-    const payload = {
-      ...value.video,
-      userId: value._id,
-      category: value.catigory,
-    };
-    if (value.video) {
-      const video = await Video.create(payload);
-      console.log(video);
-    }
-  });
-
-};
-del();
-
-*/

@@ -1,5 +1,4 @@
 import fs from "fs"
-import ytdl from 'ytdl-core'
 
 const handleVideoStreem = async (req, res) => {
   try {

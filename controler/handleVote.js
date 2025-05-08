@@ -1,18 +1,13 @@
-import Vote from "../schema/voteSchema.js"
+import Vote from "../schema/voteSchema.js";
 
 const handleVote = async (req, res) => {
-  const { userName, videoTitle, userId, videoName, voterId, votes } = req.body;
+  const { metadata } = req.body.data;
   try {
-      const newVote = await Vote.create({
-        userName,
-        videoTitle,
-        userId,
-        voterId,
-        videoName,
-        votes,
-      });
+    if (req.body.data.status === "success") {
+      const newVote = await Vote.create(metadata);
       res.send(newVote);
-} catch (err) {
+    }
+  } catch (err) {
     console.log(err);
   }
 };
