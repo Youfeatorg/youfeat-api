@@ -2,7 +2,6 @@ import fs from "fs";
 import User from "../schema/userSchema.js";
 import Video from "../schema/videoSchema.js";
 import vimeo from "../Credentials/Vimeo.js";
-import agenda from "../agenda.js";
 
 const uploadVideo = async (req, res) => {
   try {
